@@ -20,7 +20,7 @@ stockService.use('/api', routes);
 //For error handling
 stockService.use(function(error, req, res, next){
 
-    //console.log(error);
+    console.log(error);
     res.status(422).send({error: error.message});
 
 });
