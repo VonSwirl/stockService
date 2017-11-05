@@ -2,11 +2,19 @@ const express = require('express');
 const router = express.Router();
 const Product = require('../models/stock');
 
-//Get a list of stock from database (very simple)
-router.get('/stock',function(req, res, next){
-res.send({type:'GET'});
+const stockModel = require('../models/stock'); //Get db model to be able to find from
 
+
+//Get all of the products from the DB
+router.get('/products',function(req, res, next){
+  stockModel.find({}, function(err, db){
+    if(err){
+      res.send(err);
+    }
+    res.json(db);
+  });
 });
+
 
 //Add another product to database
 router.post('/stock',function(req, res, next){
@@ -36,5 +44,3 @@ router.delete('/stock/:id',function(req, res, next){
 });
 
 module.exports = router;
-
-//fgs

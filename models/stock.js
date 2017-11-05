@@ -1,12 +1,14 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+mongoose.set('debug', true);
+
 //Create stock schema and model
 const ProductSchema = new Schema({
 
     //Will keep these as objects incase new fields need to be added
-    productID: {
-      type: Number,
+    productBarcode: {
+      type: String,
       required: [true, 'Product ID field is requried']
     },
     productName: {
@@ -15,22 +17,24 @@ const ProductSchema = new Schema({
     },
     productDescription: {
       type: String
+    },
+    productPrice: {
+      type: Number
+    },
+    productCategory: { //Could this be a number?
+      type: String
+    },
+    productAvailability: {
+      type: String
+    },
+    productStockLevel: { //Will this be required etc?
+      type: Number
     }
+    // ??Should this take over the productID??
 
 });
 
-    // productCategory: { //Could this be a number?
-    //   type: String
-    // },
-    // productAvailability: {
-    //   type: String
-    // },
-    // productStockLevel: { //Will this be required etc?
-    //   type: String
-    // },
-    // productBarcode: {
-    //   type: String
-    // }
+
 
     //NEED product historical price
 

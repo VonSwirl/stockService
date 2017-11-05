@@ -3,12 +3,21 @@ const routes = require('./routes/api');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
+
+
+//var db = mongoose.connect('mongodb://rib1356:rib1356@ds042687.mlab.com:42687/stockservice', { useMongoClient: true });
+
 //Set up express app
 const stockService = express();
 
-//Connect to mongoDB (Can create a new db by changing products)
-mongoose.connect('mongodb://localhost/stock', { useMongoClient: true });
+//Set up database connections
+var uri = 'mongodb://rib1356:rib1356@ds042687.mlab.com:42687/stockservice';
 mongoose.Promise = global.Promise;
+
+mongoose.connect(uri, { useMongoClient: true }); //Stops from being deprecated
+module.exports = exports.mongoose;
+//Connect to mongoDB (Can create a new db by changing products)
+//mongoose.connect('mongodb://localhost/stock', { useMongoClient: true });
 
 stockService.use(bodyParser.json());
 
