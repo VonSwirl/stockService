@@ -27,7 +27,10 @@ const ProductSchema = new Schema({
     productAvailability: {
       type: String
     },
-    productStockLevel: { //Will this be required etc?
+    availableStock: { //Will this be required etc?
+      type: Number
+    },
+    warehouseStock: { //Will this be required etc?
       type: Number
     }
     // ??Should this take over the productID??
