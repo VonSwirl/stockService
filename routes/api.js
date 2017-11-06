@@ -22,6 +22,7 @@ router.get('/:customerid',function(req, res, next){
     //Get their current id and compare to check who they are then call another function
 });
 
+//Will have to build a way to check what products have been added to send to order service
 
 //Add another product to database
 router.post('/products',function(req, res, next){
