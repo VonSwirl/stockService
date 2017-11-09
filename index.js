@@ -3,12 +3,16 @@ const routes = require('./routes/api');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
+const path = require('path');
 
 
 //var db = mongoose.connect('mongodb://rib1356:rib1356@ds042687.mlab.com:42687/stockservice', { useMongoClient: true });
 
 //Set up express app
 const stockService = express();
+
+stockService.set('views', path.join(__dirname, 'views'));
+stockService.set('view engine', 'pug');
 
 //Set up database connections
 var uri = 'mongodb://rib1356:rib1356@ds042687.mlab.com:42687/stockservice';
