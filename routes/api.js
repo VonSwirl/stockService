@@ -5,19 +5,21 @@ const Product = require('../models/stock');
 const stockModel = require('../models/stock'); //Get db model to be able to find from
 
 
+
 //This will need to be changed to check for whos logged in so can check what they can see
 //Do this in the front end?
 
 //Get all of the products from the DB
 router.get('/products',function(req, res, next){
-  stockModel.find({}, function(err, db){
+  stockModel.find({}, function(err, products){
     if(err){
       res.send(err);
     }
-    res.json(db);
+    //send a list of the products through to the front end
+    res.render('productView', {productList : products});
   });
 });
-
+//
 //Fine a single item, this can be used when staff click to edit the historical price
 router.get('/products/:id',function(req, res, next){
     //Get their current id and compare to check who they are then call another function

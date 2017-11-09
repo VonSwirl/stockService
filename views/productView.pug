@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  h1 products
+    table
+          thead
+              tr
+                th Name
+                th Description
+                th Price
+                th category
+                th Availabilitiy
+                th Available Stock
+                th Warehouse Stock
+          tbody
+            each product in productList
+              tr  
+                td= product.productName
+                td= product.productDescription
+                td= product.productPrice
+                td= product.productCategory
+                td= product.productAvailability
+                td= product.availableStock
+                td= product.warehouseStock
+                
+
+
+                //- each product in productList
+                //-   h1= product.productName
