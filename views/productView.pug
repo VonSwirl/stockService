@@ -2,28 +2,39 @@ extends layout
 
 block content
   h1 products
+  
+  // does this need to be jays url? -V-
+  form(method='POST', action='/api/products') 
     table
           thead
               tr
                 th Name
+                th EAN
                 th Description
                 th Price
                 th category
                 th Availabilitiy
                 th Available Stock
                 th Warehouse Stock
+                th Chosen Items
           tbody
             each product in productList
               tr  
                 td= product.productName
+                td= product.productEAN
                 td= product.productDescription
                 td= product.productPrice
                 td= product.productCategory
                 td= product.productAvailability
                 td= product.availableStock
                 td= product.warehouseStock
-                
-
-
-                //- each product in productList
-                //-   h1= product.productName
+                td  
+                  body(onload="myFunc();")
+                  input(type="checkbox", id='orderChecked')    
+                  label Amount wanted:
+                    textarea.form-control(name='textArea', id='textArea')    
+                  input.btn.btn-primary(type='Submit', name='testButton', class='inputButton', id='testButton' value='Send')    
+    input.btn.btn-primary(type='Submit', value='Order')
+    
+    
+    //   
