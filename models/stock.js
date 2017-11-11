@@ -7,7 +7,7 @@ mongoose.set('debug', true);
 const ProductSchema = new Schema({
 
     //Will keep these as objects incase new fields need to be added
-    productBarcode: {
+    productEAN: {
       type: String,
       required: [true, 'Product ID field is requried']
     },
