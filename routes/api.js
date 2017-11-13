@@ -48,13 +48,13 @@ router.get('/productorder', function(req, res, next){
 });
 
 //Will do a post when button is pressed on the products page
-router.post('/products', function(req, res, next){
-   if(req.body.checkbox = 'on'){
-     console.log(req.body.textArea);
-   };
-   console.log('button pressed');
-  return;
-});
+// router.post('/products', function(req, res, next){
+//    if(req.body.checkbox = 'on'){
+//      console.log(req.body.textArea);
+//    };
+//    console.log('button pressed');
+//   return;
+// });
 
 //Add another product to database
 // router.post('/products',function(req, res, next){
