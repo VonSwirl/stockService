@@ -3,8 +3,7 @@ extends layout
 block content
   h1 products
   // does this need to be jays url? -V-
-  form(method='POST', action='/api/products') 
-  
+  form( action='/api/productorder', method="put") 
     table
           thead
               tr
@@ -16,7 +15,7 @@ block content
                 th Availabilitiy
                 th Available Stock
                 th Warehouse Stock
-                th Chosen Items
+                th Number needed
           tbody
             each product in productList
               tr  
@@ -27,11 +26,10 @@ block content
                 td= product.productCategory
                 td= product.productAvailability
                 td= product.availableStock
+                input(type="hidden", name= product.productEAN, value = product.availableStock)
                 td= product.warehouseStock
-                td  
-                  body(onload="myFunc();")
-                  input(type="checkbox", id='checkbox', name='checkbox', onclick='handleClick(this)')    
-                  
-                  textarea.form-control(name='textArea', id='textArea', class='textArea', value='disabled')               
-    input.btn.btn-primary(type='Submit', value='Order')
+                td
+                           input(type="number", name= product.productEAN, min= "0")
+                input(type="hidden", name= product.productEAN, value = product.productName)
+    input(type="submit", value="submit order")
     
