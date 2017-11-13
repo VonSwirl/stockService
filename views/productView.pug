@@ -2,9 +2,9 @@ extends layout
 
 block content
   h1 products
-  
   // does this need to be jays url? -V-
   form(method='POST', action='/api/products') 
+  
     table
           thead
               tr
@@ -30,11 +30,8 @@ block content
                 td= product.warehouseStock
                 td  
                   body(onload="myFunc();")
-                  input(type="checkbox", id='orderChecked')    
-                  label Amount wanted:
-                    textarea.form-control(name='textArea', id='textArea')    
-                  input.btn.btn-primary(type='Submit', name='testButton', class='inputButton', id='testButton' value='Send')    
+                  input(type="checkbox", id='checkbox', name='checkbox', onclick='handleClick(this)')    
+                  
+                  textarea.form-control(name='textArea', id='textArea', class='textArea', value='disabled')               
     input.btn.btn-primary(type='Submit', value='Order')
     
-    
-    //   
