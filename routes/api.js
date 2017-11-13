@@ -32,7 +32,7 @@ router.post('/products', function(req, res, next){
   // res.render('productView', {textArea: req.body.textArea});
    //var test = req.body.textArea;
    if(req.body.checkbox = 'on'){
-     console.log(req.body.checkbox);
+     //console.log(req.body.textArea);
    };
    console.log('button pressed');
   // console.log(req.body.textArea);
