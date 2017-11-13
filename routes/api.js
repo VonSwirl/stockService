@@ -28,37 +28,31 @@ router.get('/products/:id',function(req, res, next){
 
 router.get('/productorder', function(req, res, next){
 
-  //Hi rob below is the order being put together
   var order = [];
-  for(var prop in req.query){
+  for(var prop in req.query){ //Loops through the url params
     var number = req.query[prop][1];
-
-    if(number > 0){
-      var ean = prop;
+    if(number > 0){ //This will filter out all of the ones where the number they want is not 0
+      var ean = prop; //Set each of the different values of the items that have been selected
+      var name = req.query[prop][2];
       var avaliableStock = req.query[prop][0];
       var enoughStock = (avaliableStock >= number) ? true : false;
-      var name = req.query[prop][2];
-      console.log('i should be adding ann order');
-      order.push({"ean" : ean, "enoughStock" : enoughStock, "number" : number , "name" : name});
+      var price = req.query[prop][3];
+      //Create an array of each item to be sent out
+      order.push({"ean" : ean, "name" : name, "enoughStock" : enoughStock, "numberWanted" : number, "productPrice" : price });
     }
   }
-  //When you want to pass on the order the below object should be enough info :D
-  console.log("i should be ann order" , order);
-  console.log(req.query['HG1']);
+  //Can pass on an order here though json?
+  console.log("Here is an order:" , order);
+  //console.log(req.query['HG1']);
   return;
 });
 
-//var textValue = document.getElementById('textArea');
 //Will do a post when button is pressed on the products page
 router.post('/products', function(req, res, next){
-
-  // res.render('productView', {textArea: req.body.textArea});
-   //var test = req.body.textArea;
    if(req.body.checkbox = 'on'){
      console.log(req.body.textArea);
    };
    console.log('button pressed');
-
   return;
 });
 
