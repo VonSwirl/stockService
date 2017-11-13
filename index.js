@@ -27,6 +27,7 @@ module.exports = exports.mongoose;
 //mongoose.connect('mongodb://localhost/stock', { useMongoClient: true });
 
 stockService.use(bodyParser.json());
+stockService.use(bodyParser.urlencoded({ extended: true }));
 
 
 //This will use the routes specified in api.js

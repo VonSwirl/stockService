@@ -3,8 +3,6 @@ const router = express.Router();
 //const Product = require('../models/stock');
 const stockModel = require('../models/stock'); //Get db model to be able to find from
 
-
-
 //This will need to be changed to check for whos logged in so can check what they can see
 //Do this in the front end?
 
@@ -18,19 +16,31 @@ router.get('/products',function(req, res, next){
     res.render('productView', {productList : products});
   });
 });
-//
 
 //Fine a single item, this can be used when staff click to edit the historical price
+//Have an edit button on each of the rows
 router.get('/products/:id',function(req, res, next){
     //Get their current id and compare to check who they are then call another function
     stockModel.findOne({_id: req.params.id}).then(function(product){
       res.send(product);
     });
 });
-
+//var textValue = document.getElementById('textArea');
 //Will do a post when button is pressed on the products page
-router.post('/products', function(req, res){
-  console.log('button pressed');
+router.post('/products', function(req, res, next){
+
+  // res.render('productView', {textArea: req.body.textArea});
+   //var test = req.body.textArea;
+   if(req.body.checkbox = 'on'){
+     console.log(req.body.checkbox);
+   };
+   console.log('button pressed');
+  // console.log(req.body.textArea);
+   //console.log(req.body.checkbox);
+//   console.log(textArea);
+// //  let stockModel = new stockModel();
+  //stockModel.title
+//  console.log(req.body.title);
   return;
 });
 
