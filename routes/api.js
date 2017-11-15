@@ -27,17 +27,18 @@ router.get('/products/:id',function(req, res, next){
     });
 });
 
-router.get('/productorder', function(req, res, next){
+//Will get an order when the user has selected the items they want
+router.post('/productorder', function(req, res, next){
 
   var order = [];
-  for(var prop in req.query){ //Loops through the url params
-    var number = req.query[prop][1];
+  for(var prop in req.body){ //Loops through the url params
+    var number = req.body[prop][1];
     if(number > 0){ //This will filter out all of the ones where the number they want is not 0
       var ean = prop; //Set each of the different values of the items that have been selected
-      var name = req.query[prop][2];
-      var avaliableStock = req.query[prop][0];
+      var name = req.body[prop][2];
+      var avaliableStock = req.body[prop][0];
       var enoughStock = (avaliableStock >= number) ? true : false;
-      var price = req.query[prop][3];
+      var price = req.body[prop][3];
       //Create an array of each item to be sent out
       order.push({"ean" : ean, "name" : name, "enoughStock" : enoughStock, "numberWanted" : number, "productPrice" : price });
     }
