@@ -18,14 +18,22 @@ router.get('/products',function(req, res, next){
   });
 });
 
-//Fine a single item, this can be used when staff click to edit the historical price
-//Have an edit button on each of the rows
-router.get('/products/:id',function(req, res, next){
+//Get a single item to be able to edit prices
+router.post('/editProduct/:ean',function(req, res, next){
     //Get their current id and compare to check who they are then call another function
-    stockModel.findOne({_id: req.params.id}).then(function(product){
-      res.send(product);
+    stockModel.findOne({productEAN : req.params.ean}).then(function(products){
+      res.render('historicalPrices', { product : products});
     });
-});
+  });
+  
+// stockModel.findById(req.params.ean, function(err, products){
+//   if(err){
+//     res.send(err);
+//   }
+//   console.log('Im here');
+//   console.log(products);
+// });
+
 
 //Will get an order when the user has selected the items they want
 router.post('/productorder', function(req, res, next){
@@ -45,18 +53,8 @@ router.post('/productorder', function(req, res, next){
   }
   //Can pass on an order here though json?
   console.log("Here is an order:" , order);
-  //console.log(req.query['HG1']);
   return;
 });
-
-//Will do a post when button is pressed on the products page
-// router.post('/products', function(req, res, next){
-//    if(req.body.checkbox = 'on'){
-//      console.log(req.body.textArea);
-//    };
-//    console.log('button pressed');
-//   return;
-// });
 
 //Add another product to database
 // router.post('/products',function(req, res, next){
