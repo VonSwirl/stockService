@@ -16,9 +16,11 @@ block content
                 th Available Stock
                 th Warehouse Stock
                 th Number needed
+                th View and edit historical price
           tbody
             each product in productList
-              tr  
+              tr
+                  
                 td= product.productName
                 td= product.productEAN
                 td= product.productDescription
@@ -30,6 +32,11 @@ block content
                 td= product.warehouseStock
                 td
                            input(type="number", name= product.productEAN, min= "0")
+                           
+                td         
+                         form( action='/api/editProduct/'+product.productEAN, method="post")       
+                           input(type="submit", value="Edit Price")
+                           input(type="hidden", name= product.productEAN, value = product.productEAN)              
                 input(type="hidden", name= product.productEAN, value = product.productName)
                 input(type="hidden", name= product.productEAN, value = product.productPrice)
     input(type="submit", value="submit order")

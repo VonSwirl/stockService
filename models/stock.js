@@ -9,7 +9,7 @@ const ProductSchema = new Schema({
     //Will keep these as objects incase new fields need to be added
     productEAN: {
       type: String,
-      required: [true, 'Product ID field is requried']
+      required: [true, 'Product EAN field is requried']
     },
     productName: {
       type: String
