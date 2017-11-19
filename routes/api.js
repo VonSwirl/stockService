@@ -25,7 +25,7 @@ router.post('/editProduct/:ean',function(req, res, next){
       res.render('historicalPrices', { product : products});
     });
   });
-  
+
 // stockModel.findById(req.params.ean, function(err, products){
 //   if(err){
 //     res.send(err);
