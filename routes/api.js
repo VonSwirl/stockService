@@ -56,19 +56,29 @@ router.post('/productorder', function(req, res, next){
   return;
 });
 
-//Add another product to database
-// router.post('/products',function(req, res, next){
+// Will handle new data passed from purchasing survice (what if only updated data is passed?)
+// router.post('/newproducts',function(req, res, next){
 //   stockModel.create(req.body).then(function(product) { //Will create a new instance then save to db
 //     res.send(product);
+//
 //   }).catch(next);
 // });
 
-//Update a product in database (use this for changing price)
-router.put('/products/:id',function(req, res, next){
-  stockModel.findByIdAndUpdate({_id: req.params.id}, req.body).then(function(){
-    stockModel.findOne({_id: req.params.id}).then(function(product){
-      res.send(product);
-    });
+//Update a product price in the database
+router.put('/products/:ean',function(req, res, next){
+  stockModel.update({productEAN : req.params.ean}, //Compare ean passed in to get correct product
+    {$set: { productPrice: req.body.productPrice, }, //Set the product price
+     $push: {historicalPrice : req.body.historicalPrice}}, // Push the product price into historical items array
+     {
+       multi: true
+     },
+  function (err,docs) { //Error checking and status returns
+    if(err){
+      console.log('There was an error in the update' , err);
+    }else{
+      console.log('update user',docs);
+      res.status(200).json(docs);
+    }
   });
 });
 

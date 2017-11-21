@@ -32,7 +32,11 @@ const ProductSchema = new Schema({
     },
     warehouseStock: { //Will this be required etc?
       type: Number
+    },
+    historicalPrice: {
+      type: [Number]
     }
+
     // ??Should this take over the productID??
 
 });
