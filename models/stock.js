@@ -20,10 +20,12 @@ const ProductSchema = new Schema({
     },
     productPrice: {
       type: Number
+      //add a default
     },
     productCategory: { //Could this be a number?
       type: String
     },
+    //Add in a product Brand
     productAvailability: {
       type: String
     },
