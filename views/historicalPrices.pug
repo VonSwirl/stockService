@@ -1,6 +1,22 @@
 extends layout
 
 block content
-      h1= product.productName
-      h1= product.productDescription
-      h1= product.productPrice
+  h1 Historical Price
+  form( action='/api/sentPrice/'+product.productEAN, method="put") 
+    table
+          thead
+              tr
+                th Name
+                th Current Price
+                th Hisorical Price
+                th New Price
+          tbody
+            tr
+                td= product.productName
+                td= product.productPrice
+                td= product.historicalPrice
+                td
+                  input(type="number", name= product.productEAN, min= "0")   
+    input(type="submit", value="Submit Price")              
+
+      

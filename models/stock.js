@@ -34,16 +34,9 @@ const ProductSchema = new Schema({
       type: Number
     },
     historicalPrice: {
-      type: [Number]
+      type: [Number] //Store an array of numbers
     }
-
-    // ??Should this take over the productID??
-
 });
-
-
-
-    //NEED product historical price
 
 //Set a model
 const Product = mongoose.model('product', ProductSchema);
