@@ -17,6 +17,9 @@ block content
                 td= product.historicalPrice
                 td
                   input(type="number", name= product.productEAN, min= "0")   
-    input(type="submit", value="Submit Price")              
-
-      
+    input(type="submit", value="Submit Price")                 
+  script.
+    function previous(){
+      window.location.href = '/api/products'
+    }
+  button(onclick='previous()') return 

@@ -1,3 +1,5 @@
-const test = "bla bla bla";
+var config = {}
 
-module.exports = { test};
+config.OrderServiceURL = 'url here'
+
+module.exports = config;
