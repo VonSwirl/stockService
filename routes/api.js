@@ -3,7 +3,8 @@ const express = require('express');
 const router = express.Router();
 //const Product = require('../models/stock');
 const stockModel = require('../models/stock'); //Get db model to be able to find from
-
+const config = require('../config.js');
+const request = require('request');
 //This will need to be changed to check for whos logged in so can check what they can see
 //Do this in the front end?
 
@@ -26,15 +27,6 @@ router.post('/editProduct/:ean',function(req, res, next){
     });
   });
 
-// stockModel.findById(req.params.ean, function(err, products){
-//   if(err){
-//     res.send(err);
-//   }
-//   console.log('Im here');
-//   console.log(products);
-// });
-
-
 //Will get an order when the user has selected the items they want
 router.post('/productorder', function(req, res, next){
 
@@ -53,27 +45,38 @@ router.post('/productorder', function(req, res, next){
   }
   //Can pass on an order here though json?
   console.log("Here is an order:" , order);
+
+  try{
+   request.post({
+       url : config.OrderServiceURL, //Can post but needs url
+       body: order,
+       json: true
+   }).catch(function(err){
+       console.log('error with letting order service know we have update', err);
+   });
+  }catch(err){
+   console.log('error with letting order service know we have update', err);
+  }
+
+
   return;
 });
 
 // Will handle new data passed from purchasing survice (what if only updated data is passed?)
-// router.post('/newproducts',function(req, res, next){
-//   stockModel.create(req.body).then(function(product) { //Will create a new instance then save to db
-//     res.send(product);
-//
-//   }).catch(next);
-// });
+router.post('/newproducts',function(req, res, next){
+  stockModel.create(req.body).then(function(product) { //Will create a new instance then save to db
+    res.send(product);
+
+  }).catch(next);
+});
 
 //Update a product price in the database
 router.post('/sentPrice',function(req, res, next){
-  console.log('im here', req.body);
-  console.log('im here', req.body[0]);
-
 
   for(var prop in req.body){ //Loops through the url params
-    var number = req.body[prop];
-    console.log(number, prop);}
-  stockModel.update({productEAN : prop}, //Compare ean passed in to get correct product
+    var number = req.body[prop];}
+    //if(number > 0){ or null
+    stockModel.update({productEAN : prop}, //Compare ean passed in to get correct product
     {$set: { productPrice: number, }, //Set the product price
      $push: {historicalPrice : number}}, // Push the product price into historical items array
      {
@@ -83,8 +86,9 @@ router.post('/sentPrice',function(req, res, next){
     if(err){
       console.log('There was an error in the update' , err);
     }else{
-      console.log('update user',docs);
-      res.status(200).json(docs);
+      console.log('Price updated',docs);
+      res.status(200);
+      res.redirect('/api/products'); //Redirect to the home page
     }
   });
 });

@@ -22,7 +22,7 @@ const ProductSchema = new Schema({
       type: Number
       //add a default
     },
-    productCategory: { //Could this be a number?
+    productBrand: {
       type: String
     },
     //Add in a product Brand
