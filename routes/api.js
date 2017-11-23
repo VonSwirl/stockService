@@ -64,12 +64,17 @@ router.post('/productorder', function(req, res, next){
 // });
 
 //Update a product price in the database
-router.put('/sentPrice/:ean',function(req, res, next){
+router.post('/sentPrice',function(req, res, next){
   console.log('im here', req.body);
+  console.log('im here', req.body[0]);
 
-  stockModel.update({productEAN : req.params.ean}, //Compare ean passed in to get correct product
-    {$set: { productPrice: req.body, }, //Set the product price
-     $push: {historicalPrice : req.body}}, // Push the product price into historical items array
+
+  for(var prop in req.body){ //Loops through the url params
+    var number = req.body[prop];
+    console.log(number, prop);}
+  stockModel.update({productEAN : prop}, //Compare ean passed in to get correct product
+    {$set: { productPrice: number, }, //Set the product price
+     $push: {historicalPrice : number}}, // Push the product price into historical items array
      {
        multi: true
      },
