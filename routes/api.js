@@ -18,6 +18,7 @@ router.get('/products',function(req, res, next){
     res.render('productView', {productList : products});
   });
 });
+//test
 
 //Get a single item to be able to edit prices
 router.post('/editProduct/:ean',function(req, res, next){
@@ -46,17 +47,19 @@ router.post('/productorder', function(req, res, next){
   //Can pass on an order here though json?
   console.log("Here is an order:" , order);
 
-  try{
-   request.post({
-       url : config.OrderServiceURL, //Can post but needs url
-       body: order,
-       json: true
-   }).catch(function(err){
-       console.log('error with letting order service know we have update', err);
-   });
-  }catch(err){
-   console.log('error with letting order service know we have update', err);
-  }
+
+  //USE THIS TO COMMUNICATE TO ORDER SERVICE (THIS CRASHES WHEN TRYING TO SEND?????)
+  // try{
+  //  request.post({
+  //      url : config.OrderServiceURL, //Can post but needs url
+  //      body: order,
+  //      json: true
+  //  }).catch(function(err){
+  //      console.log('error with letting order service know we have update', err);
+  //  });
+  // }catch(err){
+  //  console.log('error with letting order service know we have update', err);
+  // }
 
 
   return;
@@ -64,7 +67,7 @@ router.post('/productorder', function(req, res, next){
 
 // Will handle new data passed from purchasing survice (what if only updated data is passed?)
 router.post('/newproducts',function(req, res, next){
- 
+
   stockModel.findOneAndUpdate(
     { productEAN : req.body.productEAN },
     { $inc: { avaliableStock: req.body.numberWanted, warehouseStock : req.body.numberWanted } },
@@ -73,10 +76,10 @@ router.post('/newproducts',function(req, res, next){
 
   );
   //else create a new product
-  stockModel.create(req.body).then(function(product) { //Will create a new instance then save to db
-    res.send(product);
-
-  }).catch(next);
+  // stockModel.create(req.body).then(function(product) { //Will create a new instance then save to db
+  //   res.send(product);
+  //
+  // }).catch(next);
 });
 
 //Update a product price in the database

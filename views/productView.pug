@@ -2,15 +2,10 @@ extends layout
 
 block content
   h1 Products
-  //    
-       button(onclick="move()") Edit Price
-       script.
-         function move() {
-             window.location.href = '/api/editProduct/'+product.productEAN 
-             console.log('here')
-         } 
   form( action='/api/productorder', method="post") 
-    table
+    input#myInput(type='text', onkeyup='filterName()', placeholder='Search for product name..')
+    input#myInput(type='text', onkeyup='filterBrand()', placeholder='Search for brand name..')
+    table#myTable
           thead
               tr
                 th Name
@@ -44,4 +39,45 @@ block content
                 input(type="hidden", name= product.productEAN, value = product.productName)
                 input(type="hidden", name= product.productEAN, value = product.productPrice)
     input(type="submit", value="Submit Order")
-    
+    script.
+      function filterName() {
+        // Declare variables
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+      
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[0];
+          if (td) {
+            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+            }
+          }
+        }
+      }
+    script.
+      function filterBrand() {
+        // Declare variables
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[4];
+          if (td) {
+            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+            }
+          }
+        }
+      }      
