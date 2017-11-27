@@ -1,5 +1,5 @@
 var config = {}
 
-config.OrderServiceURL = 'url here'
+config.OrderServiceURL = 'http://localhost:3004/order/makeorder'
 
 module.exports = config;
