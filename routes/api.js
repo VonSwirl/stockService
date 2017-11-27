@@ -65,10 +65,13 @@ router.post('/productorder', function(req, res, next){
 // Will handle new data passed from purchasing survice (what if only updated data is passed?)
 router.post('/newproducts',function(req, res, next){
  
-  // stockModel.findOne({productEAN : req.body.ean}).then(function(product){
-  //   //then update price
-  // });
+  stockModel.findOneAndUpdate(
+    { productEAN : req.body.productEAN },
+    { $inc: { avaliableStock: req.body.numberWanted, warehouseStock : req.body.numberWanted } },
+    { new: true, upsert: true },
+    callback
 
+  );
   //else create a new product
   stockModel.create(req.body).then(function(product) { //Will create a new instance then save to db
     res.send(product);
