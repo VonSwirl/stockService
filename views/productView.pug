@@ -3,9 +3,9 @@ extends layout
 block content
   h1 Products
   form( action='/api/productorder', method="post") 
-    input#myInput(type='text', onkeyup='filterName()', placeholder='Search for product name..')
-    input#myInput(type='text', onkeyup='filterBrand()', placeholder='Search for brand name..')
-    table#myTable
+    input(type='text', id="name", onkeyup='searchFilter(0)', placeholder='Search for product name..')
+    input(type='text', id="brand", onkeyup='searchFilter(4)', placeholder='Search for brand name..')
+    table.table.table-striped#myTable
           thead
               tr
                 th Name
@@ -40,17 +40,23 @@ block content
                 input(type="hidden", name= product.productEAN, value = product.productPrice)
     input(type="submit", value="Submit Order")
     script.
-      function filterName() {
+      function searchFilter(choice) {
         // Declare variables
         var input, filter, table, tr, td, i;
-        input = document.getElementById("myInput");
+        switch (choice){
+                case 0:
+                    input = document.getElementById("name");
+                    break;
+                case 4:
+                    input = document.getElementById("brand");
+                    break;};
         filter = input.value.toUpperCase();
         table = document.getElementById("myTable");
         tr = table.getElementsByTagName("tr");
       
         // Loop through all table rows, and hide those who don't match the search query
         for (i = 0; i < tr.length; i++) {
-          td = tr[i].getElementsByTagName("td")[0];
+          td = tr[i].getElementsByTagName("td")[choice];
           if (td) {
             if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
               tr[i].style.display = "";
@@ -60,24 +66,3 @@ block content
           }
         }
       }
-    script.
-      function filterBrand() {
-        // Declare variables
-        var input, filter, table, tr, td, i;
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
-        
-        // Loop through all table rows, and hide those who don't match the search query
-        for (i = 0; i < tr.length; i++) {
-          td = tr[i].getElementsByTagName("td")[4];
-          if (td) {
-            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-              tr[i].style.display = "";
-            } else {
-              tr[i].style.display = "none";
-            }
-          }
-        }
-      }      
