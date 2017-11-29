@@ -19,15 +19,16 @@ const ProductSchema = new Schema({
       type: String
     },
     productPrice: {
-      type: Number
-      //add a default
+      type: Number,
+      default: null
     },
     productBrand: {
       type: String
     },
     //Add in a product Brand
     productAvailability: {
-      type: String
+      type: String,
+      default: 'NotSet'
     },
     availableStock: { //Will this be required etc?
       type: Number

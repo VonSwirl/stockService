@@ -32,7 +32,7 @@ router.post('/editProduct/:ean',function(req, res, next){
 router.post('/productorder', function(req, res, next){
 
   var order = [];
-  for(var prop in req.body){ //Loops through the url params
+  for(var prop in req.body){ //Loops through the bodys items
     var number = req.body[prop][1];
     if(number > 0){ //This will filter out all of the ones where the number they want is not 0
       var ean = prop; //Set each of the different values of the items that have been selected
@@ -48,7 +48,7 @@ router.post('/productorder', function(req, res, next){
   console.log("Here is an order:" , order);
 
 
-  //USE THIS TO COMMUNICATE TO ORDER SERVICE (THIS CRASHES WHEN TRYING TO SEND?????)
+  //USE THIS TO COMMUNICATE TO ORDER SERVICE
   // try{
   //  request.post({
   //      url : config.OrderServiceURL, //Can post but needs url
@@ -65,35 +65,39 @@ router.post('/productorder', function(req, res, next){
   return;
 });
 
-// Will handle new data passed from purchasing survice (what if only updated data is passed?)
+// Will handle new data passed from purchasing survice
 router.post('/newproducts',function(req, res, next){
 
-  stockModel.findOneAndUpdate(
-    { productEAN : req.body.productEAN },
-    { $inc: { avaliableStock: req.body.numberWanted, warehouseStock : req.body.numberWanted } },
-    { new: true, upsert: true },
-    callback
+    stockModel.findOneAndUpdate ({productEAN : req.body.productEAN}, //Compare the EAN passed in
+      { $inc: { availableStock : req.body.availableStock, warehouseStock : req.body.warehouseStock }, //Update the new product if it exists
+        $set: { productName : req.body.productName, productDescription : req.body.productDescription, productBrand : req.body.productBrand }
+      },
+      { upsert : true, new : true, setDefaultsOnInsert : true}, //Otherwise create a new one and set defaults
 
-  );
-  //else create a new product
-  // stockModel.create(req.body).then(function(product) { //Will create a new instance then save to db
-  //   res.send(product);
-  //
-  // }).catch(next);
+      function (err,docs) { //Error checking and status returns
+        if(err){
+          console.log('There was an error in the update' , err);
+        }else{
+          console.log('Product updated or added',docs);
+          res.status(200);
+        }
+    });
 });
+
 
 //Update a product price in the database
 router.post('/sentPrice',function(req, res, next){
 
   for(var prop in req.body){ //Loops through the url params
     var number = req.body[prop];}
-    //if(number > 0){ or null
+    if(number > 0){
     stockModel.update({productEAN : prop}, //Compare ean passed in to get correct product
     {$set: { productPrice: number, }, //Set the product price
      $push: {historicalPrice : number}}, // Push the product price into historical items array
      {
        multi: true
      },
+
   function (err,docs) { //Error checking and status returns
     if(err){
       console.log('There was an error in the update' , err);
@@ -102,16 +106,11 @@ router.post('/sentPrice',function(req, res, next){
       res.status(200);
       res.redirect('/api/products'); //Redirect to the home page
     }
-  });
-});
 
-//Delete a product from database Still doesnt work well but is it needed?
-router.delete('/products/:id',function(req, res, next){
-  stockModel.findByIdAndRemove({_id:req.params.id}).then(function(product){
-    res.send(product);
   });
-  res.send({type:'DELETE'});
-
-});
+}
+else{
+  console.log('cant enter a value less than 0');
+}});
 
 module.exports = router;
