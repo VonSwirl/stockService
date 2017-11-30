@@ -2,6 +2,7 @@ const express = require('express');
 const routes = require('./routes/api');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const expressJwt = require('express-jwt');
 
 const path = require('path');
 

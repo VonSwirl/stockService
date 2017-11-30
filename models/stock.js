@@ -20,7 +20,7 @@ const ProductSchema = new Schema({
     },
     productPrice: {
       type: Number,
-      default: null
+      default: 9999
     },
     productBrand: {
       type: String

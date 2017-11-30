@@ -16,8 +16,16 @@ block content
                 td= product.productPrice
                 td= product.historicalPrice
                 td
-                  input(type="number", name= product.productEAN, min= "0")   
-    input(type="submit", value="Submit Price")                 
+                  input(type="number", name= product.productEAN, min= "0", id="numberNeeded")   
+    input(type="submit", value="Submit Price", onclick='numberCheck()')   
+    script.
+      function numberCheck(){
+        var n = document.getElementById("numberNeeded").value;
+        if(n == 0) {
+        alert('Please enter a value')
+        return false;
+        }
+      }
   script.
     function previous(){
       window.location.href = '/api/products'
