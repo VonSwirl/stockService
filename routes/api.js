@@ -48,7 +48,7 @@ router.post('/productorder', function(req, res, next){
   console.log("Here is an order:" , order);
 
 
-  //USE THIS TO COMMUNICATE TO ORDER SERVICE
+  //// USE THIS TO COMMUNICATE TO ORDER SERVICE
   // try{
   //  request.post({
   //      url : config.OrderServiceURL, //Can post but needs url
