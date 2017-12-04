@@ -40,7 +40,7 @@ block content
                      input(type="hidden", name= product.productEAN, value = product.productEAN)    
                 input(type="hidden", name= product.productEAN, value = product.productName)
                 input(type="hidden", name= product.productEAN, value = product.productPrice)
-    input(type="submit", value="Submit Order")
+    input(type="submit", value="Submit Order", onclick="javascript:alert('Order completed')")
     script.
       function searchFilter(choice) {
         // Declare variables

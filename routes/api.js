@@ -64,10 +64,9 @@ router.post('/productorder', function(req, res, next){
    }catch(err){
     console.log('error with letting order service know we have update', err);
    }
-
-  console.log("IM HERE"); 
-  res.send('Order Sent');
-  
+   res.status(200);
+   //res.send('Order Sent');
+   res.redirect('/api/products');
 });
 
 // Will handle new data passed from purchasing survice
