@@ -54,13 +54,12 @@ router.post('/productorder', function(req, res, next){
         url : config.OrderServiceURL, //Can post but needs url
         body: order,
         json: true
-    }).catch(function(err){
-        console.log('error with letting order service know we have update', err);
-    });
+    }, function(err, res, body){
+        console.log('There was an error', err, 'this is the body', body);
+    })
    }catch(err){
     console.log('error with letting order service know we have update', err);
    }
-
 
   return;
 });
@@ -69,17 +68,18 @@ router.post('/productorder', function(req, res, next){
 router.post('/newproducts',function(req, res, next){
 
     stockModel.findOneAndUpdate ({productEAN : req.body.productEAN}, //Compare the EAN passed in
-      { $inc: { availableStock : req.body.availableStock, warehouseStock : req.body.warehouseStock }, //Update the new product if it exists
+      { $inc: { availableStock : req.body.numberRequired, warehouseStock : req.body.numberRequired }, //Update the new product if it exists
         $set: { productName : req.body.productName, productDescription : req.body.productDescription, productBrand : req.body.productBrand }
       },
       { upsert : true, new : true, setDefaultsOnInsert : true}, //Otherwise create a new one and set defaults
-
+     
       function (err,docs) { //Error checking and status returns
         if(err){
           console.log('There was an error in the update' , err);
         }else{
           console.log('Product updated or added',docs);
           res.status(200);
+          res.send('Congrats!');
         }
     });
 });
