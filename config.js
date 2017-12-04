@@ -1,39 +1,38 @@
-var config = {}
 
 //config.OrderServiceURL = 'http://localhost:3004/order/makeorder'
 //config.OrderServiceURL = 'http://3amigoso.azurewebsites.net/order/makeorder'
 
 var development = {
 
-'orderServiceURL' : "http://3amigoso.azurewebsites.net/order/makeorder",
-'secret' : 'jwtsecret'}
+    'orderServiceURL': "http://3amigoso.azurewebsites.net/order/makeorder",
+    'secret': 'jwtsecret'
+}
 
 var test = {
-    
-'orderServiceURL' : "http://3amigoso.azurewebsites.net/order/makeorder",
-'secret' : 'jwtsecret'}
+
+    'orderServiceURL': "http://3amigoso.azurewebsites.net/order/makeorder",
+    'secret': 'jwtsecret'
+}
 
 var standard = {
 
-'orderServiceURL' : "http://3amigoso.azurewebsites.net/order/makeorder",
-'secret' : 'jwtsecret'}
+    'orderServiceURL': "http://3amigoso.azurewebsites.net/order/makeorder",
+    'secret': 'jwtsecret'
+}
 
-var config =function (){
+var config = function () {
 
-    switch(process.env.NODE_ENV){
+    switch (process.env.NODE_ENV) {
 
-    case 'development':
+        case 'development':
+            return development;
 
-    return development;
+        case 'standard':
+            return standard;
 
-    case 'standard':
+        default:
+            return development;
+    }
+}
 
-    return standard;
-
-    default:
-
-        return development;
-
-}}
-
-module.exports = config;
+module.exports = config();

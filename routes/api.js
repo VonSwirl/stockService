@@ -32,17 +32,18 @@ router.post('/editProduct/:ean',function(req, res, next){
 router.post('/productorder', function(req, res, next){
 
   var order = [];
+  var customerRef = "test@test.com";
   for(var prop in req.body){ //Loops through the bodys items
     var number = req.body[prop][1];
     if(number > 0){ //This will filter out all of the ones where the number they want is not 0
       var ean = prop; //Set each of the different values of the items that have been selected
       var name = req.body[prop][2];
-      var avaliableStock = req.body[prop][0];
-      var enoughStock = (avaliableStock >= number) ? true : false;
+      var warehouseStock = req.body[prop][0];
+      //var enoughStock = (avaliableStock >= number) ? true : false;
       var price = req.body[prop][3];
-      var customerRef = "123";
+      
       //Create an array of each item to be sent out
-      order.push({"ean" : ean, "name" : name, "enoughStock" : enoughStock, "numberWanted" : number, "productPrice" : price, "customerRef" : customerRef });
+      order.push({"ean" : ean, "name" : name, "qtyReq" : number, "stockQty" : warehouseStock, "productPrice" : price, "custoRef" : customerRef });
     }
   }
   //Can pass on an order here though json?
@@ -52,13 +53,12 @@ router.post('/productorder', function(req, res, next){
   //// USE THIS TO COMMUNICATE TO ORDER SERVICE
    try{
     request.post({
-        url : config.OrderServiceURL, //Can post but needs url
+        url : config.orderServiceURL, //Can post but needs url
         body: order,
         json: true
     }, function(err, res, body){
       if(err){
         console.log('There was an error', err);
-        //console.log(res);
       }
     })
    }catch(err){

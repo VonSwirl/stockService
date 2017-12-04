@@ -30,7 +30,7 @@ block content
                 td= product.productBrand
                 //td= product.productAvailability
                 td= product.availableStock
-                input(type="hidden", name= product.productEAN, value = product.availableStock)
+                input(type="hidden", name= product.productEAN, value = product.warehouseStock)
                 td= product.warehouseStock
                 td
                   input(type="number", name= product.productEAN, min= "0")       
