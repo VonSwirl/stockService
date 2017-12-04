@@ -49,17 +49,17 @@ router.post('/productorder', function(req, res, next){
 
 
   //// USE THIS TO COMMUNICATE TO ORDER SERVICE
-  // try{
-  //  request.post({
-  //      url : config.OrderServiceURL, //Can post but needs url
-  //      body: order,
-  //      json: true
-  //  }).catch(function(err){
-  //      console.log('error with letting order service know we have update', err);
-  //  });
-  // }catch(err){
-  //  console.log('error with letting order service know we have update', err);
-  // }
+   try{
+    request.post({
+        url : config.OrderServiceURL, //Can post but needs url
+        body: order,
+        json: true
+    }).catch(function(err){
+        console.log('error with letting order service know we have update', err);
+    });
+   }catch(err){
+    console.log('error with letting order service know we have update', err);
+   }
 
 
   return;
