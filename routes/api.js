@@ -56,13 +56,17 @@ router.post('/productorder', function(req, res, next){
         body: order,
         json: true
     }, function(err, res, body){
-        console.log('There was an error', err, '---This is the body', body);
+      if(err){
+        console.log('There was an error', err);
+        //console.log(res);
+      }
     })
    }catch(err){
     console.log('error with letting order service know we have update', err);
    }
 
-  console.log("IM HEREEEE"); 
+  console.log("IM HERE"); 
+  res.send('Order Sent');
   
 });
 
