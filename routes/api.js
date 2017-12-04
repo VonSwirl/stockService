@@ -40,8 +40,9 @@ router.post('/productorder', function(req, res, next){
       var avaliableStock = req.body[prop][0];
       var enoughStock = (avaliableStock >= number) ? true : false;
       var price = req.body[prop][3];
+      var customerRef = "123";
       //Create an array of each item to be sent out
-      order.push({"ean" : ean, "name" : name, "enoughStock" : enoughStock, "numberWanted" : number, "productPrice" : price });
+      order.push({"ean" : ean, "name" : name, "enoughStock" : enoughStock, "numberWanted" : number, "productPrice" : price, "customerRef" : customerRef });
     }
   }
   //Can pass on an order here though json?
@@ -55,13 +56,14 @@ router.post('/productorder', function(req, res, next){
         body: order,
         json: true
     }, function(err, res, body){
-        console.log('There was an error', err, 'this is the body', body);
+        console.log('There was an error', err, '---This is the body', body);
     })
    }catch(err){
     console.log('error with letting order service know we have update', err);
    }
 
-  return;
+  console.log("IM HEREEEE"); 
+  
 });
 
 // Will handle new data passed from purchasing survice
