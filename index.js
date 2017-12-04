@@ -16,7 +16,7 @@ stockService.set('views', path.join(__dirname, 'views'));
 stockService.set('view engine', 'pug');
 
 //Sets a link for css and js to be used in pug file
-stockService.use('/static', express.static('public'));
+stockService.use(express.static('public'));
 
 //Set up database connections
 var uri = 'mongodb://rib1356:rib1356@ds042687.mlab.com:42687/stockservice';

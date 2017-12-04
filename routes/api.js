@@ -73,9 +73,9 @@ router.post('/productorder', function(req, res, next){
 // Will handle new data passed from purchasing survice
 router.post('/newproducts',function(req, res, next){
 
-    stockModel.findOneAndUpdate ({productEAN : req.body.productEAN}, //Compare the EAN passed in
+    stockModel.findOneAndUpdate ({productEAN : req.body.ean}, //Compare the EAN passed in
       { $inc: { availableStock : req.body.numberRequired, warehouseStock : req.body.numberRequired }, //Update the new product if it exists
-        $set: { productName : req.body.productName, productDescription : req.body.productDescription, productBrand : req.body.productBrand }
+        $set: { productName : req.body.name, productDescription : req.body.description, productBrand : req.body.brand }
       },
       { upsert : true, new : true, setDefaultsOnInsert : true}, //Otherwise create a new one and set defaults
      
