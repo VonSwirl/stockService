@@ -40,7 +40,7 @@ stockService.use(function(error, req, res, next){
 
 
 //Listen for requests
-stockService.listen(process.env.port || 3012, function() { //Listen to request from port or external hosting
+stockService.listen(process.env.port || 3003, function() { //Listen to request from port or external hosting
 
 console.log('Now listening for requests');
 
