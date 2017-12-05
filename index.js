@@ -6,9 +6,6 @@ const expressJwt = require('express-jwt');
 
 const path = require('path');
 
-
-//var db = mongoose.connect('mongodb://rib1356:rib1356@ds042687.mlab.com:42687/stockservice', { useMongoClient: true });
-
 //Set up express app
 const stockService = express();
 
@@ -22,14 +19,12 @@ stockService.use(express.static('public'));
 var uri = 'mongodb://rib1356:rib1356@ds042687.mlab.com:42687/stockservice';
 mongoose.Promise = global.Promise;
 
+//Connect to mongoDB
 mongoose.connect(uri, { useMongoClient: true }); //Stops from being deprecated
 module.exports = exports.mongoose;
-//Connect to mongoDB (Can create a new db by changing products)
-//mongoose.connect('mongodb://localhost/stock', { useMongoClient: true });
 
 stockService.use(bodyParser.json());
 stockService.use(bodyParser.urlencoded({ extended: true }));
-
 
 //This will use the routes specified in api.js
 //Initialise routes
@@ -45,7 +40,7 @@ stockService.use(function(error, req, res, next){
 
 
 //Listen for requests
-stockService.listen(process.env.port || 3003, function() { //Listen to request from port or external hosting
+stockService.listen(process.env.port || 3012, function() { //Listen to request from port or external hosting
 
 console.log('Now listening for requests');
 

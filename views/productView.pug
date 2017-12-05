@@ -4,6 +4,8 @@ block content
   h1 Products
   p Sort name and brand alphabetically by pressing on table headers
   p Sort Price and stocks(customer/staff only) by pressing on table headers
+  p
+    small The first row doesnt work?
   form( action='/api/productorder', method="post") 
     input(type='text', id="name", onkeyup='searchFilter(0)', placeholder='Search for product name..')
     input(type='text', id="brand", onkeyup='searchFilter(4)', placeholder='Search for brand name..')
