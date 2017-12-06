@@ -16,7 +16,7 @@ block content
                 td= product.productPrice
                 td= product.historicalPrice
                 td
-                  input(type="number", name= product.productEAN, min= "0", id="numberNeeded")   
+                  input(type="number", name= product.productEAN, min= "0", id="numberNeeded", , step="0.01")   
     input(type="submit", value="Submit Price", onclick='numberCheck()')   
     script.
       function numberCheck(){
