@@ -8,5 +8,5 @@ scenarios:
   - get:
       url: "/"
     post:
-      url: "/api/editProduct/5 102310 100101"
+      url: "api/editProduct/5 102310 100101"
       
