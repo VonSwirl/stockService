@@ -5,7 +5,7 @@ const editProduct = require('../services/editProduct');
 const productCommunication = require('../services/productCommunication');
 
 //Results
-var random = Math.random(100);
+
 
 
 describe('editProduct', function(){
