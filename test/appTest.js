@@ -1,17 +1,23 @@
 const assert = require('chai').assert;
 const app = require('../routes/api');
 
+const editProduct = require('../services/editProduct');
+const productCommunication = require('../services/productCommunication');
+
 //Results
-sayHelloResult = app.t();
+var random = Math.random(100);
 
-describe('Api', function(){
-    it('SayHello should return hello', function(){
-        assert.equal(sayHelloResult, 'hello');
+
+describe('editProduct', function(){
+    it('Get product should have only a number being passed to it', function(){
+        assert.typeOf(x, 'number');
     });
-
-    it('SayHello should return string', function(){
-        assert.typeOf(sayHelloResult, 'string');
+ 
+    it('Should find a single product, will check against ean', function(){
+        assert.typeOf(x, 'string');
+    });
+    it('Updating a product price should only be a number passed', function(){
+        assert.typeOf(x, 'number');
     });
     
 });
-

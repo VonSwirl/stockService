@@ -22,7 +22,7 @@ function getProduct(ean) {
  * @param {Request} req 
  */
 function updateProductPrice(req) {
-  return new Promise(function (resolve, reject) {
+  return new Promise( function (resolve, reject) {
     for (var prop in req.body) { //Loops through the url params
       var number = req.body[prop];
     }
