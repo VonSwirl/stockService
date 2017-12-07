@@ -8,5 +8,25 @@ scenarios:
   - get:
       url: "/"
     post:
-      url: "api/editProduct/5 102310 100101"
-      
+      url: "/api/editProduct/5 102310 100101"
+    post:
+      url: "/sentPrice"
+      json:
+        numberNeeded : 5
+    post:
+      url: "/productorder"
+      json:
+        ean: "Test",
+        name: "T",
+        qtyReq: "5",
+        stockQty: "15",
+        productPrice: "2",
+        custoRef: "test@test.com"  
+    post:
+      url: "/newproducts"
+      json:
+        ean: "Test",
+        name: "Test Name",
+        description: "Test description",
+        brand: "Test Brand",
+        numberRequired: "2",  
