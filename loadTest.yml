@@ -29,4 +29,4 @@ scenarios:
         name: "Test Name",
         description: "Test description",
         brand: "Test Brand",
-        numberRequired: "2",  
+        numberRequired: "2"  
