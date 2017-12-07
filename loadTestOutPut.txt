@@ -1,0 +1,105 @@
+λ artillery run loadTest.yml
+Started phase 0, duration: 30s @ 19:13:07(+0000) 2017-12-07
+Report @ 19:13:17(+0000) 2017-12-07
+  Scenarios launched:  44
+  Scenarios completed: 44
+  Requests completed:  44
+  Concurrent users:    17
+  RPS sent: 4.72
+  Request latency:
+    min: 56.8
+    max: 4146.8
+    median: 706.8
+    p95: 3653
+    p99: NaN
+  Scenario duration:
+    min: 58.6
+    max: 4148.6
+    median: 708.6
+    p95: 3656.4
+    p99: NaN
+  Codes:
+    200: 44
+
+Report @ 19:13:27(+0000) 2017-12-07
+  Scenarios launched:  50
+  Scenarios completed: 50
+  Requests completed:  50
+  RPS sent: 4.75
+  Request latency:
+    min: 56
+    max: 119.1
+    median: 90.2
+    p95: 117.2
+    p99: 119.1
+  Scenario duration:
+    min: 57
+    max: 120.1
+    median: 92.1
+    p95: 119.6
+    p99: 120.1
+  Codes:
+    200: 50
+
+Report @ 19:13:37(+0000) 2017-12-07
+  Scenarios launched:  50
+  Scenarios completed: 50
+  Requests completed:  50
+  RPS sent: 4.75
+  Request latency:
+    min: 55.6
+    max: 123
+    median: 95.1
+    p95: 114.6
+    p99: 123
+  Scenario duration:
+    min: 56.6
+    max: 125.1
+    median: 96.2
+    p95: 116.5
+    p99: 125.1
+  Codes:
+    200: 50
+
+Report @ 19:13:38(+0000) 2017-12-07
+  Scenarios launched:  6
+  Scenarios completed: 6
+  Requests completed:  6
+  RPS sent: 3.97
+  Request latency:
+    min: 57.7
+    max: 135.3
+    median: 105.3
+    p95: NaN
+    p99: NaN
+  Scenario duration:
+    min: 58.4
+    max: 137.3
+    median: 108
+    p95: NaN
+    p99: NaN
+  Codes:
+    200: 6
+
+All virtual users finished
+Summary report @ 19:13:38(+0000) 2017-12-07
+  Scenarios launched:  150
+  Scenarios completed: 150
+  Requests completed:  150
+  RPS sent: 4.94
+  Request latency:
+    min: 55.6
+    max: 4146.8
+    median: 97.8
+    p95: 2791.6
+    p99: 4100.2
+  Scenario duration:
+    min: 56.6
+    max: 4148.6
+    median: 99.8
+    p95: 2792.5
+    p99: 4109
+  Scenario counts:
+    0: 150 (100%)
+  Codes:
+    200: 150
